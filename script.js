@@ -15,18 +15,34 @@
 // });
 
 $(document).ready(function () {
-  var list = $("#list");
-  var btn = $("#btn");
+  let list = $("#list");
+  let btn = $("#btn");
+// $('body').keypress(function (e) {
+//   e.preventDefault();
+//   let key = e.keyCode;
+//   if (key == 13) {
+//     createNewListItem();
+//   }
+// });
 
-  $("#btn").click(function (e) {
-    let inputValue = $("#inputBox").val().trim();
 
-    if (inputValue === "") {
-      alert("List cannot be empty");
-    } else {
-      let newElement = list.append("<li>");
-      let text = inputValue;
-      newElement.append(text);
-    }
+function createNewListItem() {
+  let inputValue = $("#inputBox").val().trim();
+
+  if (inputValue === "") {
+    alert("List cannot be empty");
+  } else {
+    let newElement = $("<li>");
+    let text = inputValue;
+    newElement.append(text);
+    list.append(newElement);
+  }
+}
+
+
+
+  btn.click(function () {
+    createNewListItem();
   });
+
 });
