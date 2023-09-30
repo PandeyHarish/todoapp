@@ -17,32 +17,26 @@
 $(document).ready(function () {
   let list = $("#list");
   let btn = $("#btn");
-// $('body').keypress(function (e) {
-//   e.preventDefault();
-//   let key = e.keyCode;
-//   if (key == 13) {
-//     createNewListItem();
-//   }
-// });
-
-
-function createNewListItem() {
-  let inputValue = $("#inputBox").val().trim();
-
-  if (inputValue === "") {
-    alert("List cannot be empty");
-  } else {
-    let newElement = $("<li>");
-    let text = inputValue;
-    newElement.append(text);
-    list.append(newElement);
+  function createNewListItem() {
+    let inputValue = $("#inputBox").val().trim();
+    if (inputValue === "") {
+      alert("List cannot be empty");
+    } else {
+      let newElement = $("<li>");
+      let text = inputValue;
+      newElement.append(text);
+      list.append(newElement);
+    }
   }
-}
 
-
-
-  btn.click(function () {
+  btn.click(function (event) {
+    event.preventDefault();
     createNewListItem();
+    $("#inputBox").val("");
   });
-
+  $("#todoForm").submit(function (event) {
+    event.preventDefault(); // Prevent form submission
+    createNewListItem();
+    $("#inputBox").val("");
+  });
 });
